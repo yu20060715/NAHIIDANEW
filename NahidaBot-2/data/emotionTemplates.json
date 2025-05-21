@@ -1,0 +1,5 @@
+[
+  { "threshold": -5, "response": "人家看你好像不開心…要不要聊聊？" },
+  { "threshold": 0, "response": "抱抱～一切都會好起來的！" },
+  { "threshold": 5, "response": "太好了～好開心和你聊天！" }
+]

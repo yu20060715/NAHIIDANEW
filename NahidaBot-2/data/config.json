@@ -1,0 +1,9 @@
+{
+  "cron": {
+    "flirtInterval": "0 * * * *",
+    "mealTimes": ["8","12","18","21","1"],
+    "unseenInterval": "0 */30 * * *"
+  },
+  "whitelist": [],
+  "blacklist": []
+}

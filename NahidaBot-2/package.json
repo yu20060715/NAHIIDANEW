@@ -1,20 +1,21 @@
 {
-  "name": "nahidabot",
+  "name": "naxibot",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "description": "Naxi Discord Bot",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "@discordjs/voice": "^0.x",
-    "better-sqlite3": "^8.6.0",
-    "chalk": "^4.1.2",
-    "discord-tts": "^1.x",
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.5.0",
-    "luxon": "^3.6.1",
-    "node-cron": "^3.0.3",
-    "suncalc": "^1.9.0",
-    "winston": "^3.x"
+    "discord.js": "^14.11.0",
+    "better-sqlite3": "^8.5.0",
+    "croner": "^7.0.0",
+    "node-fetch": "^3.3.1",
+    "i18next": "^22.4.10",
+    "i18next-fs-backend": "^2.2.0",
+    "dayjs": "^1.11.9",
+    "dotenv": "^16.4.5",
+    "sentiment": "^5.0.1"
   }
 }
