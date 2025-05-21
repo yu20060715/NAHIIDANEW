@@ -1,0 +1,5 @@
+{
+  "greetingChannelId": null,
+  "reminderIntervalMinutes": 60,
+  "flirtThresholdMinutes": 120
+}
