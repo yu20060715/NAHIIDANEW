@@ -40,6 +40,12 @@
 // client.login(process.env.DISCORD_TOKEN);
 
 // src/index.js
+
+require('dotenv').config({ override: true });
+console.log('【環境驗證】DISCORD_TOKEN:', 
+  process.env.DISCORD_TOKEN ? '已存在' : '未找到！'
+);
+
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 
@@ -52,6 +58,18 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent
   ]
+});
+
+client.on('ready', () => {
+  console.log(`【调试】機器人已上線！用戶名：${client.user.tag}`);
+  
+  // 臨時測試頻道發送
+const testChannel = client.channels.cache.get('1372264355210723463');
+  if (testChannel) {
+    testChannel.send('測試訊息').catch(console.error);
+  } else {
+    console.log('【錯誤】找不到測試頻道');
+  }
 });
 
 // src/index.js

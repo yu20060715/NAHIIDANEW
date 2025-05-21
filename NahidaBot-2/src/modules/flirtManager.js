@@ -32,8 +32,12 @@ function getNicknameResponse() {
 
 function injectDynamicContent(text, variables) {
   return text
-    .replace(/%\{emoji\}/g, () => getRandomEmoji())
-    .replace(/%\{name\}/g, variables.name);
+    .replace(/%\{time\}/g, () => new Date().toLocaleTimeString('zh-TW'))
+    .replace(/%\{name\}/g, variables.name)
+    .replace(/%\{emoji\}/g, () => {
+      const emojis = ['🌱', '✨', '🌸', '🍃'];
+      return emojis[Math.floor(Math.random() * emojis.length)];
+    });
 }
 
 function getRandomFlirt() {
