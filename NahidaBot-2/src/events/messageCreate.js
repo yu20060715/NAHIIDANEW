@@ -1,6 +1,6 @@
 const { getNicknameResponse, injectDynamicContent } = require('../modules/flirtManager');
 const { t } = require('../modules/lang');
-const db = require('../modules/database');
+const db = require('../modules/database'); // 直接引用已初始化的实例
 
 // 稱呼觸發正則強化版（包含用戶自訂稱呼）
 function getNicknameRegex(userId) {
@@ -18,8 +18,12 @@ module.exports = async (client, message) => {
     if (!message.channel.permissionsFor(message.guild?.members.me).has('SendMessages')) return;
 
     // 獲取用戶設定
-    const userConfig = db.prepare('SELECT * FROM users WHERE id = ?').get(message.author.id);
-    const lang = userConfig?.lang || 'zh';
+    const db = require('../modules/database'); // 直接引用已初始化的實例
+
+// 修改查詢方式
+  const userConfig = db
+  .prepare('SELECT * FROM users WHERE id = ?')
+  .get(message.author.id);
 
     // 稱呼觸發邏輯
     const nicknameRegex = getNicknameRegex(message.author.id);
@@ -33,7 +37,7 @@ module.exports = async (client, message) => {
       });
       
       message.reply({
-        content: t(response, lang),
+        content: t(response, userConfig?.lang || 'zh'),
         allowedMentions: { repliedUser: false }  // 避免@用戶
       });
       return;

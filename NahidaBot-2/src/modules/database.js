@@ -1,26 +1,21 @@
+// src/modules/database.js
+const path = require('path');
 const Database = require('better-sqlite3');
 
-let db;
+const dbPath = path.resolve(__dirname, '../../data/nahida.db');
 
-module.exports = {
-  init: () => {
-    db = new Database('data/nahida.db');
-    db.pragma('journal_mode = WAL');
-    
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS users (
-        id TEXT PRIMARY KEY,
-        name TEXT,
-        lang TEXT DEFAULT 'zh',
-        style TEXT DEFAULT 'default'
-      );
-      CREATE TABLE IF NOT EXISTS reminders (
-        id INTEGER PRIMARY KEY,
-        user_id TEXT,
-        trigger_at DATETIME,
-        content TEXT
-      );
-    `);
-  },
-  get: () => db
-};
+// 導出已初始化的單例實例
+const db = new Database(dbPath);
+db.pragma('journal_mode = WAL');
+
+// 創建表結構
+db.exec(`
+  CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY,
+    custom_name TEXT,
+    lang TEXT DEFAULT 'zh',
+    style TEXT DEFAULT 'default'
+  )
+`);
+
+module.exports = db;
